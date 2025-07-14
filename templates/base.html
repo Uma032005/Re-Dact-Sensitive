@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RE-DACT</title>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <!-- JavaScript -->
+  <script src="{{ url_for('static', filename='js/app.js') }}" defer></script>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <a class="navbar-brand" href="{{ url_for('home') }}">RE-DACT</a>
+      <button class="hamburger" type="button" aria-label="Toggle navigation">
+        <span class="hamburger-icon">☰</span> <!-- Hamburger icon -->
+      </button>
+      <div class="nav-links">
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'text_redaction' %}active{% endif %}" href="{{ url_for('text_redaction') }}">Text Redaction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'image_redaction' %}active{% endif %}" href="{{ url_for('image_redaction') }}">Image Redaction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'document_redaction' %}active{% endif %}" href="{{ url_for('document_redaction') }}">Document Redaction</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}">About</a>
+          </li>
+        <!-- Theme Toggle Button -->
+        <button class="theme-button">
+          <span id="theme-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    {% block content %}
+    {% endblock %}
+  </main>
+</body>
+</html>
